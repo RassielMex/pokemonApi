@@ -1,11 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { Pokemon } from "../types/Pokemon";
+import { AppDispatch } from "./store";
+
+export interface PokemonState {
+  items: Pokemon[];
+}
+
+const initialState: PokemonState = {
+  items: [],
+};
 
 export const pokemonSlice = createSlice({
   name: "pokemon",
-  initialState: {
-    items: [],
-  },
+  initialState,
   reducers: {
     replace: (state, action) => {
       state.items = action.payload;
@@ -19,8 +27,8 @@ export const pokemonSlice = createSlice({
   },
 });
 
-export const fetchData = (limit, offset) => {
-  return (dispatch) => {
+export const fetchData = (limit: Number, offset: Number) => {
+  return (dispatch: AppDispatch) => {
     axios
       .get(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}"`)
       .then((res) => {

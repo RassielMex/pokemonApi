@@ -1,26 +1,33 @@
 import { Button, Container, TextField } from "@mui/material";
 import { Stack } from "@mui/system";
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, {
+  ChangeEvent,
+  ChangeEventHandler,
+  MouseEventHandler,
+  useState,
+} from "react";
 import CardList from "../components/CardList";
+import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 import { fetchData } from "../store/pokemon-slice";
 
 const MainView = () => {
-  const dispatch = useDispatch();
-  const data = useSelector((state) => state.pokemon.items);
+  const dispatch = useAppDispatch();
+  const data = useAppSelector((state) => state.pokemon.items);
   const [offset, setOffset] = useState(0);
   const [limit, setLimit] = useState(10);
 
-  const handleClick = () => {
+  const handleClick: MouseEventHandler = () => {
     dispatch(fetchData(limit, offset));
   };
 
-  const handleChange = (e) => {
+  const handleChange: ChangeEventHandler = (
+    e: ChangeEvent<HTMLInputElement>
+  ) => {
     const id = e.target.id;
     if (id === "offset") {
-      setOffset(e.target.value);
+      setOffset(parseInt(e.currentTarget.value));
     } else {
-      setLimit(e.target.value);
+      setLimit(parseInt(e.currentTarget.value));
     }
   };
 

@@ -1,8 +1,13 @@
 import { Stack } from "@mui/system";
 import React from "react";
+import { Pokemon } from "../types/Pokemon";
 import PokemonCard from "./PokemonCard";
 
-const CardList = ({ list }) => {
+type CardListProps = {
+  list: Pokemon[];
+};
+
+const CardList = ({ list }: CardListProps) => {
   return (
     <Stack
       spacing={2}
