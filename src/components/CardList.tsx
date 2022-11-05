@@ -16,7 +16,7 @@ const CardList = ({ list }: CardListProps) => {
       alignItems={"center"}
     >
       {list?.map((item, index) => {
-        return <PokemonCard name={item.name} key={index} />;
+        return <PokemonCard name={item.name} key={index} url={item.sprite} />;
       })}
     </Stack>
   );
