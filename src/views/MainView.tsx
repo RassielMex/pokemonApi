@@ -24,10 +24,11 @@ const MainView = () => {
     e: ChangeEvent<HTMLInputElement>
   ) => {
     const id = e.target.id;
+    const val = parseInt(e.currentTarget.value);
     if (id === "offset") {
-      setOffset(parseInt(e.currentTarget.value));
+      setOffset(val ? val : 0);
     } else {
-      setLimit(parseInt(e.currentTarget.value));
+      setLimit(val ? val : 0);
     }
   };
 
